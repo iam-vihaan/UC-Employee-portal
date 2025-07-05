@@ -1,0 +1,5 @@
+# backend/requirements.txt
+Flask==2.3.2
+Flask-SQLAlchemy==3.1.1
+psycopg2-binary==2.9.7
+Flask-JWT-Extended==4.6.0
