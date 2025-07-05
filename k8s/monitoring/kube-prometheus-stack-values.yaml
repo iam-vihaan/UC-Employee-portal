@@ -1,0 +1,42 @@
+# k8s/monitoring/kube-prometheus-stack-values.yaml
+# Helm values file to deploy Prometheus and Grafana using kube-prometheus-stack
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    resources:
+      requests:
+        memory: 400Mi
+        cpu: 200m
+      limits:
+        memory: 1Gi
+        cpu: 500m
+
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      requests:
+        memory: 200Mi
+        cpu: 100m
+      limits:
+        memory: 512Mi
+        cpu: 200m
+
+nodeExporter:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+grafana:
+  adminPassword: "admin"
+  service:
+    type: LoadBalancer
+  ingress:
+    enabled: false
+  dashboards:
+    default:
+      cluster-overview:
+        gnetId: 3119
+        revision: 1
+        datasource: Prometheus
